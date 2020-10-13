@@ -1,17 +1,20 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
 
     defaultConfig {
         applicationId "com.frogsm.yogurt"
-        minSdkVersion 22
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.code
+        versionName build_versions.name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,37 +25,58 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    // kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+//    implementation project(path: ':data')
+//    implementation project(path: ':domain')
 
-    // androidx
-    implementation "androidx.core:core-ktx:$androidx_core_version"
-    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
-    implementation "androidx.activity:activity-ktx:$androidx_activity_ktx_version"
-    implementation "androidx.fragment:fragment-ktx:$androidx_fragment_ktx_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidx_lifecycle_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+    implementation deps.kotlin.stdlib
 
-    implementation "com.google.android.material:material:$material_version"
+    implementation deps.androidx.core_ktx
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.activity_ktx
+    implementation deps.androidx.fragment_ktx
+    implementation deps.androidx.lifecycle_ktx
+    implementation deps.androidx.viewpager
+    implementation deps.androidx.constraint_layout
 
-    // dagger
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation deps.androidx.hilt
+    kapt deps.androidx.hilt_compiler
 
-    // test
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation deps.navigation.ui_ktx
+    implementation deps.navigation.fragment_ktx
+
+    implementation deps.hilt.android
+    kapt deps.hilt.android_compiler
+
+    implementation deps.material.base
+
+    implementation deps.retrofit.base
+    implementation deps.retrofit.convert_moshi
+
+    implementation deps.okhttp.logging_interceptor
+
+    implementation deps.moshi.kotlin
+    kapt deps.moshi.kotlin_codegen
+
+    implementation deps.glide.base
+    kapt deps.glide.compiler
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.ext_junit
+    androidTestImplementation deps.test.espresso
+
 }
