@@ -13,6 +13,11 @@ ext {
     androidx_fragment_ktx_version = "1.2.5"
     androidx_lifecycle_version = "2.2.0"
 
+    // android
     constraint_layout_version = "2.0.2"
     material_version = "1.2.1"
+
+    // dagger
+    dagger_version = "2.29.1"
+
 }

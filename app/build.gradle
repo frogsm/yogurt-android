@@ -47,6 +47,10 @@ dependencies {
 
     implementation "com.google.android.material:material:$material_version"
 
+    // dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
     // test
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
