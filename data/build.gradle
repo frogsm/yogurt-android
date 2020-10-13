@@ -40,7 +40,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-//    implementation project(path: ':domain')
+    implementation project(path: ':domain')
 
     implementation deps.kotlin.stdlib
 
@@ -63,5 +63,4 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.ext_junit
     androidTestImplementation deps.test.espresso
-
 }
