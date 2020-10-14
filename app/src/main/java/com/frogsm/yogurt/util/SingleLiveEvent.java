@@ -15,7 +15,7 @@
  *  limitations under the License.
  */
 
-package com.frogsm.yogurt.ui.util;
+package com.frogsm.yogurt.util;
 
 import android.util.Log;
 

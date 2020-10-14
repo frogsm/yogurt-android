@@ -1,4 +1,4 @@
-package com.frogsm.yogurt.ui.util
+package com.frogsm.yogurt.util
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver

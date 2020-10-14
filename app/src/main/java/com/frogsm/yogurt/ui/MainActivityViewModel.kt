@@ -8,10 +8,14 @@ import androidx.lifecycle.ViewModel
 class MainActivityViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
-    private val _action = MutableLiveData<MainActivityAction>()
-    val action: LiveData<MainActivityAction> get() = _action
+    private val _action = MutableLiveData<Navigate>()
+    val action: LiveData<Navigate> get() = _action
 
     fun onBottomSheetClicked() {
-        _action.value = MainActivityAction.NavigateBottomSheet
+        _action.value = Navigate.BottomSheetActivity
+    }
+
+    sealed class Navigate {
+        object BottomSheetActivity : Navigate()
     }
 }

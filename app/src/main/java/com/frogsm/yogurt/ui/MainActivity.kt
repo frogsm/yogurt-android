@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private fun initBinding() {
         viewModel.action.observeNotNull(this) {
             when (it) {
-                MainActivityAction.NavigateBottomSheet -> {
+                MainActivityViewModel.Navigate.BottomSheetActivity -> {
                     val intent = Intent(this, BottomSheetActivity::class.java)
                     startActivity(intent)
                 }

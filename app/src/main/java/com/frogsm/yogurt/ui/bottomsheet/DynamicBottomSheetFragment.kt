@@ -13,7 +13,7 @@ import com.frogsm.yogurt.R
 import com.frogsm.yogurt.databinding.FragmentDynamicBottomSheetBinding
 import com.frogsm.yogurt.extension.observeNotNull
 import com.frogsm.yogurt.ui.bottomsheet.list.DynamicBottomSheetAdapter
-import com.frogsm.yogurt.ui.util.autoCleared
+import com.frogsm.yogurt.util.autoCleared
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
