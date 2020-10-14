@@ -6,18 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.frogsm.yogurt.R
 import com.frogsm.yogurt.databinding.FragmentDynamicBottomSheetBinding
+import com.frogsm.yogurt.extension.observeNotNull
+import com.frogsm.yogurt.ui.bottomsheet.list.DynamicBottomSheetAdapter
 import com.frogsm.yogurt.ui.util.autoCleared
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DynamicBottomSheetFragment : BottomSheetDialogFragment() {
 
     private var binding: FragmentDynamicBottomSheetBinding by autoCleared()
+    private val viewModel: DynamicBottomSheetViewModel by viewModels()
+
+    @Inject
+    lateinit var dynamicBottomSheetAdapter: DynamicBottomSheetAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +39,11 @@ class DynamicBottomSheetFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDynamicBottomSheetBinding.inflate(
-            inflater, container, false
-        ).also {
-            it.lifecycleOwner = viewLifecycleOwner
-        }
+        binding = FragmentDynamicBottomSheetBinding
+            .inflate(inflater, container, false)
+            .also {
+                it.lifecycleOwner = viewLifecycleOwner
+            }
         return binding.root
     }
 
@@ -41,6 +51,7 @@ class DynamicBottomSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initBinding()
+        viewModel.start(emptyList())
     }
 
     private fun initView() {
@@ -49,14 +60,16 @@ class DynamicBottomSheetFragment : BottomSheetDialogFragment() {
         behavior?.skipCollapsed = true
         behavior?.state = BottomSheetBehavior.STATE_EXPANDED
 
-//        binding.itemList.apply {
-//            adapter = itemAdapter
-//            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-//        }
+        binding.itemList.apply {
+            adapter = dynamicBottomSheetAdapter
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        }
     }
 
     private fun initBinding() {
-
+        viewModel.bottomSheetItems.observeNotNull(viewLifecycleOwner) {
+            dynamicBottomSheetAdapter.submitList(it)
+        }
     }
 
     companion object {
