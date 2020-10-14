@@ -42,6 +42,7 @@ class DynamicBottomSheetFragment : BottomSheetDialogFragment() {
         binding = FragmentDynamicBottomSheetBinding
             .inflate(inflater, container, false)
             .also {
+                it.viewModel = viewModel
                 it.lifecycleOwner = viewLifecycleOwner
             }
         return binding.root
