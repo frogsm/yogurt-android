@@ -15,7 +15,12 @@ class MainActivityViewModel @ViewModelInject constructor(
         _action.value = Navigate.BottomSheetActivity
     }
 
+    fun onBrightnessClicked() {
+        _action.value = Navigate.BrightnessActivity
+    }
+
     sealed class Navigate {
         object BottomSheetActivity : Navigate()
+        object BrightnessActivity : Navigate()
     }
 }

@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.frogsm.yogurt.R
 import com.frogsm.yogurt.databinding.ActivityMainBinding
 import com.frogsm.yogurt.extension.observeNotNull
 import com.frogsm.yogurt.ui.bottomsheet.BottomSheetActivity
+import com.frogsm.yogurt.ui.brightness.BrightnessActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +37,10 @@ class MainActivity : AppCompatActivity() {
             when (it) {
                 MainActivityViewModel.Navigate.BottomSheetActivity -> {
                     val intent = Intent(this, BottomSheetActivity::class.java)
+                    startActivity(intent)
+                }
+                MainActivityViewModel.Navigate.BrightnessActivity -> {
+                    val intent = Intent(this, BrightnessActivity::class.java)
                     startActivity(intent)
                 }
             }

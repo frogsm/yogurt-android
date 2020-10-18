@@ -18,9 +18,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.bottomsheet.BottomSheetActivity"
+        <activity android:name=".ui.bottomsheet.BottomSheetActivity" />
 
-            />
+        <activity android:name=".ui.brightness.BrightnessActivity" />
     </application>
 
 </manifest>

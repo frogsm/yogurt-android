@@ -16,14 +16,27 @@
         tools:context=".ui.MainActivity">
 
         <Button
+            android:id="@+id/bottom_sheet_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.onBottomSheetClicked()}"
             android:text="bottom_sheet"
+            app:layout_constraintBottom_toTopOf="@id/brightness_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/brightness_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onBrightnessClicked()}"
+            android:text="bright_ness"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/bottom_sheet_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
