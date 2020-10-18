@@ -22,12 +22,11 @@ class BrightnessDelegateImpl : BrightnessDelegate, LifecycleObserver {
     private var brightness = -1f
 
     override fun initBrightness(fragment: Fragment) {
-        val fragmentLifecycle = fragment.viewLifecycleOwner.lifecycle
-
         this.fragment = fragment
         this.brightness = window.attributes.screenBrightness
 
         // LifecycleObserver 등록
+        val fragmentLifecycle = fragment.viewLifecycleOwner.lifecycle
         fragmentLifecycle.addObserver(this)
 
         brightnessMax(true)
