@@ -29,7 +29,7 @@ object Coroutines {
 
 object Android {
     private object Versions {
-        const val gradle = "4.1.0"
+        const val gradle = "4.1.1"
     }
 
     const val plugin = "com.android.tools.build:gradle:${Versions.gradle}"
